@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Course project</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="tabs">
+        <button data-tab-target="#interval" class="tab">Time interval definition</button>
+        <button data-tab-target="#holidays" class="tab">Country holidays by date</button>
+      </div>
+      
+     <div class="tab-content">
+        <div class="data-tab-content" id="interval">
+            <h3>Time interval definition</h3>
+            <p>some inputs</p>
+            <label for="date1">Choose date1:</label>
+                <input type="date" id="date1" name="date1" value="">
+            <label for="date2">Choose date2:</label>
+                <input type="date" id="date2" name="date2" value="" disabled>
+        </div>
+      
+        <div class="data-tab-content" id="holidays">
+            <h3>Country holidays by date</h3>
+            <p>some information</p>
+      </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+
+   
