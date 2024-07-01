@@ -23,7 +23,41 @@
                 <input type="date" id="date1" name="date1" value="" />
                 <label for="date2">Choose date2:</label>
                 <input type="date" id="date2" name="date2" value="" disabled />
+                <div>
+                    <button class="week">Week</button>
+                    <button class="month">Month</button>
+                </div>
+                <p>Set additional parameters</p>
+                <p>Select one from the given options:
+                    <select id="selectDays">
+                        <option value="alldays">All days</option>
+                        <option value="weekdays">Weekdays</option>
+                        <option value="weekends">Weekends</option>
+                    </select>
+                </p>
+                <div> Select one from the given options: 
+                    <select id="selectIntervals">Count
+                        <option value="days">the number of days</option>
+                        <option value="hours">the number of hours</option>
+                        <option value="minutes">the number of minutes</option>
+                        <option value="seconds">the number of seconds</option>
+                    </select>
+                </div>
+                <div>
+                    <button id="calcResult">Calculation result:</button>
+                    <output id="output"></output>
+                </div>
+                <table id="resultTable">
+                    <tr>
+                      <th>First date</th>
+                      <th>Final date</th>
+                      <th>Calculation result</th>
+                    </tr>
+                </table>
             </div>
+        
+
+           
 
             <div class="data-tab-content" id="holidays">
                 <h3>Country holidays by date</h3>

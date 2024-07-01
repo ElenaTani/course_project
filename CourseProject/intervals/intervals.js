@@ -1,26 +1,105 @@
 "use strict";
 
-export class Intervals {
-    #date1;
-    #date2;
-    constructor() {
-        this.#date1 = document.querySelector("#date1");
-        this.#date2 = document.querySelector("#date2");
+import { DatesHelper } from "./datesHelper.js"; 
 
-        this.#date1.addEventListener("change", this.#conditionOfChoosingDate2)
+import { IntervalResults } from "./intervalResults.js";
+
+export class Intervals {
+    #dateInput1;
+    #dateInput2;
+    #week;
+    #month;
+    #selectDays;
+    #selectIntervals;
+    #output;
+    #datesHelper;
+    #calcResult;
+    #intervalResults;
+    constructor() {
+        this.#dateInput1 = document.querySelector("#date1");
+        this.#dateInput2 = document.querySelector("#date2");
+
+        this.#week = document.querySelector(".week");
+        this.#month = document.querySelector(".month");
+        
+        this.#datesHelper = new DatesHelper();
+
+        this.#calcResult = document.querySelector("#calcResult");
+
+        this.#selectDays = document.querySelector("#selectDays");
+        this.#selectIntervals = document.querySelector("#selectIntervals");
+        this.#output = document.querySelector("#output");
+        this.#intervalResults = new IntervalResults();
+
+        this.#dateInput1.addEventListener("change", this.#conditionOfChoosingDate2);
+
+        this.#week.addEventListener("click", this.#weekPreset);
+        this.#month.addEventListener("click", this.#monthPreset);
+
+        this.#calcResult.addEventListener("click", this.#calculate);
     }
 
     #conditionOfChoosingDate2 = () => {
-        console.log(this.#date1.value)
-        if (this.#date1.value === "") {
-            this.#date2.setAttribute("disabled", "");
+        if (this.#dateInput1.value === "") {
+            this.#dateInput2.setAttribute("disabled", "");
         } else {
-            this.#date2.removeAttribute("disabled");
+            this.#dateInput2.removeAttribute("disabled");
         }
-        this.#date2.setAttribute("min", this.#date1.value)
+        this.#dateInput2.setAttribute("min", this.#dateInput1.value);
+    };
+
+    #weekPreset = () => {
+        let date1;
+        if (this.#dateInput1.value === "") {
+            date1 = new Date();
+            this.#dateInput1.value = this.#datesHelper.format(date1);
+        } else {
+            date1 = new Date(this.#dateInput1.value);
+        }
+        const date2 = this.#datesHelper.addWeek(date1)
+       
+        this.#dateInput2.value = this.#datesHelper.format(date2);
+        this.#dateInput2.removeAttribute("disabled");
+    };
+    #monthPreset = () => {
+        let date1;
+        if (this.#dateInput1.value === "") {
+            date1 = new Date();
+            this.#dateInput1.value = this.#datesHelper.format(date1);
+        } else {
+            date1 = new Date(this.#dateInput1.value);
+        }
+        const date2 = this.#datesHelper.addMonth(date1)
+       
+        this.#dateInput2.value = this.#datesHelper.format(date2);
+        this.#dateInput2.removeAttribute("disabled");
+    };
+    #calculate = () => {
+
+        const firstDate = new Date(this.#dateInput1.value);
+        const secondDate = new Date(this.#dateInput2.value);
+
+        let numberOfDays;
+        if (this.#selectDays.value === "alldays") {
+            numberOfDays = this.#datesHelper.getAlldaysCount(firstDate, secondDate);
+        } else if (this.#selectDays.value === "weekdays") {
+            numberOfDays = this.#datesHelper.getweekDayCount(firstDate, secondDate);
+        } else {
+            numberOfDays = this.#datesHelper.getweekEndCount(firstDate, secondDate);
+        }
+
+        let output;
+        if (this.#selectIntervals.value === "days") {
+            output = numberOfDays;
+        } else if (this.#selectIntervals.value === "hours") {
+            output = numberOfDays*24;
+        } else if (this.#selectIntervals.value === "minutes") {
+            output = numberOfDays*24*60;
+        } else {
+            output = numberOfDays*24*60*60;
+        }
+        this.#output.textContent = output;
+
+        this.#intervalResults.add(firstDate, secondDate, output)
     }
 }
-
-
-
-
