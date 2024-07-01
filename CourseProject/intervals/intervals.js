@@ -89,15 +89,19 @@ export class Intervals {
         }
 
         let output;
-        if (this.#selectIntervals.value === "days") {
-            output = numberOfDays;
-        } else if (this.#selectIntervals.value === "hours") {
-            output = numberOfDays*24;
-        } else if (this.#selectIntervals.value === "minutes") {
-            output = numberOfDays*24*60;
-        } else {
-            output = numberOfDays*24*60*60;
-        }
+switch (this.#selectIntervals.value) {
+    case "days":
+        output = numberOfDays;
+        break;
+    case "hours":
+        output = numberOfDays*24;
+        break;
+    case "minutes":
+        output = numberOfDays*24*60;
+        break;
+    default:
+        output = numberOfDays*24*60*60;
+}
         this.#output.textContent = output;
 
         this.#intervalResults.add(firstDate, secondDate, output)
