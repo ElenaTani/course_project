@@ -53,7 +53,9 @@ export class DatesHelper {
         const curDate = new Date(startDate.getTime());
         while (curDate <= endDate) {
             const dayOfWeek = curDate.getDay();
-            if(dayOfWeek == 0 || dayOfWeek == 6) count++;
+            if(dayOfWeek == 0 || dayOfWeek == 6) {
+              count++;
+            };
             curDate.setDate(curDate.getDate() + 1);
         }
         return count;
