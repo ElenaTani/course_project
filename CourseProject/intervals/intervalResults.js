@@ -14,7 +14,7 @@ export class IntervalResults {
         ? JSON.parse(localStorage.getItem('results')) : [];
 
         if (results.length >= 10) {
-            results.shift()
+            results.shift();
         };
 
         const firstDateFormatted = this.#datesHelper.format(firstDate);
