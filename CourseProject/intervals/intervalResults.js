@@ -8,7 +8,7 @@ export class IntervalResults {
         this.#datesHelper = new DatesHelper();
         this.#fillTable();
     }
-    add = function(firstDate, secondDate, result) {
+    addCalculationResult = function(firstDate, secondDate, result) {
 
         const results = localStorage.getItem('results') !== null
         ? JSON.parse(localStorage.getItem('results')) : [];

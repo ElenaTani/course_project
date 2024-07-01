@@ -1,6 +1,6 @@
 "use strict";
 
-import { DatesHelper } from "./datesHelper.js"; 
+import { DatesHelper } from "./datesHelper.js";
 
 import { IntervalResults } from "./intervalResults.js";
 
@@ -21,7 +21,7 @@ export class Intervals {
 
         this.#week = document.querySelector(".week");
         this.#month = document.querySelector(".month");
-        
+
         this.#datesHelper = new DatesHelper();
 
         this.#calcResult = document.querySelector("#calcResult");
@@ -31,7 +31,10 @@ export class Intervals {
         this.#output = document.querySelector("#output");
         this.#intervalResults = new IntervalResults();
 
-        this.#dateInput1.addEventListener("change", this.#conditionOfChoosingDate2);
+        this.#dateInput1.addEventListener(
+            "change",
+            this.#conditionOfChoosingDate2
+        );
 
         this.#week.addEventListener("click", this.#weekPreset);
         this.#month.addEventListener("click", this.#monthPreset);
@@ -47,7 +50,6 @@ export class Intervals {
         }
         this.#dateInput2.setAttribute("min", this.#dateInput1.value);
     };
-
     #weekPreset = () => {
         let date1;
         if (this.#dateInput1.value === "") {
@@ -56,8 +58,8 @@ export class Intervals {
         } else {
             date1 = new Date(this.#dateInput1.value);
         }
-        const date2 = this.#datesHelper.addWeek(date1)
-       
+        const date2 = this.#datesHelper.addWeek(date1);
+
         this.#dateInput2.value = this.#datesHelper.format(date2);
         this.#dateInput2.removeAttribute("disabled");
     };
@@ -69,41 +71,57 @@ export class Intervals {
         } else {
             date1 = new Date(this.#dateInput1.value);
         }
-        const date2 = this.#datesHelper.addMonth(date1)
-       
+        const date2 = this.#datesHelper.addMonth(date1);
+
         this.#dateInput2.value = this.#datesHelper.format(date2);
         this.#dateInput2.removeAttribute("disabled");
     };
     #calculate = () => {
-
         const firstDate = new Date(this.#dateInput1.value);
         const secondDate = new Date(this.#dateInput2.value);
 
         let numberOfDays;
-        if (this.#selectDays.value === "alldays") {
-            numberOfDays = this.#datesHelper.getAlldaysCount(firstDate, secondDate);
-        } else if (this.#selectDays.value === "weekdays") {
-            numberOfDays = this.#datesHelper.getweekDayCount(firstDate, secondDate);
-        } else {
-            numberOfDays = this.#datesHelper.getweekEndCount(firstDate, secondDate);
+
+        switch (this.#selectDays.value) {
+            case "alldays":
+                numberOfDays = this.#datesHelper.getAlldaysCount(
+                    firstDate,
+                    secondDate
+                );
+                break;
+            case "weekdays":
+                numberOfDays = this.#datesHelper.getweekDayCount(
+                    firstDate,
+                    secondDate
+                );
+                break;
+            default:
+                numberOfDays = this.#datesHelper.getweekEndCount(
+                    firstDate,
+                    secondDate
+                );
         }
 
         let output;
-switch (this.#selectIntervals.value) {
-    case "days":
-        output = numberOfDays;
-        break;
-    case "hours":
-        output = numberOfDays*24;
-        break;
-    case "minutes":
-        output = numberOfDays*24*60;
-        break;
-    default:
-        output = numberOfDays*24*60*60;
-}
+        switch (this.#selectIntervals.value) {
+            case "days":
+                output = numberOfDays;
+                break;
+            case "hours":
+                output = numberOfDays * 24;
+                break;
+            case "minutes":
+                output = numberOfDays * 24 * 60;
+                break;
+            default:
+                output = numberOfDays * 24 * 60 * 60;
+        }
         this.#output.textContent = output;
 
-        this.#intervalResults.add(firstDate, secondDate, output)
-    }
+        this.#intervalResults.addCalculationResult(
+            firstDate,
+            secondDate,
+            output
+        );
+    };
 }
