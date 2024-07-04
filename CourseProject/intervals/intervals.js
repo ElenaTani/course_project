@@ -77,6 +77,9 @@ export class Intervals {
         this.#dateInput2.removeAttribute("disabled");
     };
     #calculate = () => {
+        if (this.#dateInput1.value === "" || this.#dateInput2.value === "") {
+            return;
+        }
         const firstDate = new Date(this.#dateInput1.value);
         const secondDate = new Date(this.#dateInput2.value);
 
