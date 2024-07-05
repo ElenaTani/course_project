@@ -1,4 +1,3 @@
-"use strict";
 
 import { DatesHelper } from "../intervals/datesHelper.js";
 

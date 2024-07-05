@@ -8,16 +8,16 @@
     </head>
     <body>
         <div class="tabs">
-            <button data-tab-target="#interval" class="tab">
+            <button id="interval" class="tab">
                 Time interval definition
             </button>
-            <button data-tab-target="#holidays" class="tab">
+            <button id="holidays" class="tab">
                 Country holidays by date
             </button>
         </div>
 
         <div class="tab-content">
-            <div class="data-tab-content" id="interval">
+            <div class="data-tab-content" id="interval-tab">
                 <h3>Time interval definition</h3>
                 <label for="date1">Choose date1:</label>
                 <input type="date" id="date1" name="date1" value="" />
@@ -57,9 +57,7 @@
             </div>
         
 
-           
-
-            <div class="data-tab-content" id="holidays">
+            <div class="data-tab-content" id="holidays-tab">
                 <h3>Country holidays by date</h3>
                 <label for="country">Select country</label>
                 <select id="country" name="country">

@@ -1,4 +1,3 @@
-"use strict";
 
 import { CalendarAPI } from "./calendarAPI.js";
 import { HolidaysTable } from "./holidaysTable.js";
@@ -17,14 +16,13 @@ export class Holidays {
         this.#year = document.getElementById("year");
         this.#getHolidays = document.querySelector("#getHolidays");
         
-        this.#fillCountries();
         this.#fillYears();
 
         this.#country.addEventListener("change", this.#activateYear);
         this.#getHolidays.addEventListener("click", this.#showHolidays);
     }
 
-    #fillCountries = async () => {
+    fillCountries = async () => {
         const countries = await this.#calendarAPI.getCountries();
 
         for (let i = 0; i < countries.length; i++) {
