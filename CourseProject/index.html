@@ -4,39 +4,45 @@
         <meta charset="utf-8" />
         <title>Course project</title>
         <link rel="stylesheet" href="index.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+        />
         <script src="index.js" type="module"></script>
     </head>
     <body>
         <div class="tabs">
-            <button id="interval" class="tab">
-                Time interval definition
-            </button>
-            <button id="holidays" class="tab">
-                Country holidays by date
-            </button>
+            <button id="interval" class="tab">Time interval definition</button>
+            <button id="holidays" class="tab">Country holidays by date</button>
         </div>
 
         <div class="tab-content">
             <div class="data-tab-content" id="interval-tab">
                 <h3>Time interval definition</h3>
-                <label for="date1">Choose date1:</label>
+                <label for="date1">Choose start date:</label>
                 <input type="date" id="date1" name="date1" value="" />
-                <label for="date2">Choose date2:</label>
+                <label for="date2">Choose final date:</label>
                 <input type="date" id="date2" name="date2" value="" disabled />
                 <div>
                     <button class="week">Week</button>
                     <button class="month">Month</button>
                 </div>
                 <p>Set additional parameters</p>
-                <p>Select one from the given options:
+                <p>
+                    Select one from the given options:
                     <select id="selectDays">
                         <option value="alldays">All days</option>
                         <option value="weekdays">Weekdays</option>
                         <option value="weekends">Weekends</option>
                     </select>
                 </p>
-                <div> Select one from the given options: 
-                    <select id="selectIntervals">Count
+                <div>
+                    Select one from the given options:
+                    <select id="selectIntervals">
+                        Count
                         <option value="days">the number of days</option>
                         <option value="hours">the number of hours</option>
                         <option value="minutes">the number of minutes</option>
@@ -47,15 +53,16 @@
                     <button id="calcResult">Calculation result:</button>
                     <output id="output"></output>
                 </div>
-                <table id="resultTable">
-                    <tr>
-                      <th>First date</th>
-                      <th>Final date</th>
-                      <th>Calculation result</th>
-                    </tr>
+                <table class="table table-hover" id="resultTable">
+                    <thead>
+                        <tr>
+                            <th>Start date</th>
+                            <th>Final date</th>
+                            <th>Calculation result</th>
+                        </tr>
+                    </thead>
                 </table>
             </div>
-        
 
             <div class="data-tab-content" id="holidays-tab">
                 <h3>Country holidays by date</h3>

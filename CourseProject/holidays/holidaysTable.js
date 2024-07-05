@@ -16,8 +16,14 @@ export class HolidaysTable {
 
         const table = document.createElement("table");
         tableContainer.appendChild(table);
+        table.classList.add("table");
+        table.classList.add("table-hover");
+        const thead = document.createElement("thead");
+        table.appendChild(thead);
+        const tbody = document.createElement("tbody");
+        table.appendChild(tbody);
         const tableRow = document.createElement("tr");
-        table.appendChild(tableRow);
+        thead.appendChild(tableRow);
         const tableHeader1 = document.createElement("th");
         const tableHeader2 = document.createElement("th");
         tableRow.appendChild(tableHeader1);
@@ -30,7 +36,7 @@ export class HolidaysTable {
 
         holidays.forEach((holiday) => {
             const tableRow = document.createElement("tr");
-            table.appendChild(tableRow);
+            tbody.appendChild(tableRow);
             const tableData1 = document.createElement("td");
             const tableData2 = document.createElement("td");
             tableRow.appendChild(tableData1);
