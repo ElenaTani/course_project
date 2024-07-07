@@ -1,5 +1,3 @@
-"use strict";
-
 import { DatesHelper } from "./datesHelper.js";
 
 import { IntervalResults } from "./intervalResults.js";
@@ -31,10 +29,7 @@ export class Intervals {
         this.#output = document.querySelector("#output");
         this.#intervalResults = new IntervalResults();
 
-        this.#dateInput1.addEventListener(
-            "change",
-            this.#conditionOfChoosingDate2
-        );
+        this.#dateInput1.addEventListener("change", this.#enableFinalDate);
 
         this.#week.addEventListener("click", this.#weekPreset);
         this.#month.addEventListener("click", this.#monthPreset);
@@ -42,7 +37,7 @@ export class Intervals {
         this.#calcResult.addEventListener("click", this.#calculate);
     }
 
-    #conditionOfChoosingDate2 = () => {
+    #enableFinalDate = () => {
         if (this.#dateInput1.value === "") {
             this.#dateInput2.setAttribute("disabled", "");
         } else {
@@ -77,7 +72,7 @@ export class Intervals {
         this.#dateInput2.removeAttribute("disabled");
     };
     #calculate = () => {
-        if (this.#dateInput1.value === "" || this.#dateInput2.value === "") {
+        if (!this.#dateInput1.value || !this.#dateInput2.value) {
             return;
         }
         const firstDate = new Date(this.#dateInput1.value);
@@ -93,13 +88,13 @@ export class Intervals {
                 );
                 break;
             case "weekdays":
-                numberOfDays = this.#datesHelper.getweekDayCount(
+                numberOfDays = this.#datesHelper.getWeekDayCount(
                     firstDate,
                     secondDate
                 );
                 break;
             default:
-                numberOfDays = this.#datesHelper.getweekEndCount(
+                numberOfDays = this.#datesHelper.getWeekEndCount(
                     firstDate,
                     secondDate
                 );

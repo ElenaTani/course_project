@@ -3,7 +3,12 @@
     display: none;
 }
 
-.active.data-tab-content {
+#errorMessage {
+    display: none;
+    margin: 10px;
+}
+
+.data-tab-content.active, #errorMessage.active {
     display: block;
 }
 
@@ -21,17 +26,9 @@
     border-bottom: 1px solid black;
 }
 
-.tab.active { 
-background-color: #ccc;
-}
-
 .tab{
     cursor: pointer;
     padding: 10px;
-}
-
-.tab:hover{
-    background-color: #AAA;
 }
 
 .tab-content {

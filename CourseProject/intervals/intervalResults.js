@@ -1,5 +1,3 @@
-"use strict";
-
 import { DatesHelper } from "./datesHelper.js";
 
 export class IntervalResults {

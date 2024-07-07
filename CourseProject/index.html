@@ -13,10 +13,14 @@
         />
         <script src="index.js" type="module"></script>
     </head>
-    <body>
+    <body class="bg-light">
         <div class="tabs">
-            <button id="interval" class="tab">Time interval definition</button>
-            <button id="holidays" class="tab">Country holidays by date</button>
+            <button id="interval" class="tab btn btn-primary btn-lg">
+                Time interval definition
+            </button>
+            <button id="holidays" class="tab btn btn-primary btn-lg">
+                Country holidays by date
+            </button>
         </div>
 
         <div class="tab-content">
@@ -27,8 +31,8 @@
                 <label for="date2">Choose final date:</label>
                 <input type="date" id="date2" name="date2" value="" disabled />
                 <div>
-                    <button class="week">Week</button>
-                    <button class="month">Month</button>
+                    <button class="week btn btn-outline-primary">Week</button>
+                    <button class="month btn btn-outline-primary">Month</button>
                 </div>
                 <p>Set additional parameters</p>
                 <p>
@@ -50,7 +54,9 @@
                     </select>
                 </div>
                 <div>
-                    <button id="calcResult">Calculation result:</button>
+                    <button id="calcResult" class="btn btn-outline-success">
+                        Calculation result:
+                    </button>
                     <output id="output"></output>
                 </div>
                 <table class="table table-hover" id="resultTable">
@@ -67,16 +73,23 @@
             <div class="data-tab-content" id="holidays-tab">
                 <h3>Country holidays by date</h3>
                 <label for="country">Select country</label>
-                <select id="country" name="country">
+                <select id="country" name="country" disabled>
                     <option hidden disabled selected value></option>
                 </select>
                 <label for="year">Select year</label>
                 <select id="year" disabled></select>
                 <div>
-                    <button id="getHolidays">Get holidays</button>
+                    <button id="getHolidays" class="btn btn-outline-success">
+                        Get holidays
+                    </button>
                 </div>
                 <div id="table-container"></div>
             </div>
         </div>
+        <div
+            id="errorMessage"
+            class="alert alert-warning position-absolute top-0 end-0"
+            role="alert"
+        ></div>
     </body>
 </html>

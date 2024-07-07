@@ -8,7 +8,6 @@ export class Tabs {
     #tabIntervals;
     #tabHolidays;
     #holidays;
-    #countriesNotLoaded;
 
     constructor() {
         this.#tabButtons = document.querySelectorAll(".tab");
@@ -20,7 +19,7 @@ export class Tabs {
         this.#tabIntervals = document.querySelector("#interval-tab");
         this.#tabHolidays = document.querySelector("#holidays-tab");
 
-        this.#countriesNotLoaded = true;
+        this.#activateIntervalsTab();
 
         this.#buttonIntervals.addEventListener(
             "click",
@@ -54,9 +53,6 @@ export class Tabs {
         this.#buttonHolidays.classList.add("active");
         this.#tabHolidays.classList.add("active");
 
-        if (this.#countriesNotLoaded) {
-            this.#holidays.fillCountries();
-            this.#countriesNotLoaded = false;
-        }
+        this.#holidays.fillCountries();
     };
 }

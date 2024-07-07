@@ -1,4 +1,3 @@
-
 import { DatesHelper } from "../intervals/datesHelper.js";
 
 export class HolidaysTable {
@@ -11,17 +10,17 @@ export class HolidaysTable {
 
     #createTable = (holidays) => {
         const tableContainer = document.querySelector("#table-container");
-
         tableContainer.innerHTML = "";
-
         const table = document.createElement("table");
         tableContainer.appendChild(table);
         table.classList.add("table");
         table.classList.add("table-hover");
+        table.appendChild(this.#generateTableHeader());
+        table.appendChild(this.#generateTableBody(holidays));
+        this.#holidaysArray = holidays;
+    };
+    #generateTableHeader = () => {
         const thead = document.createElement("thead");
-        table.appendChild(thead);
-        const tbody = document.createElement("tbody");
-        table.appendChild(tbody);
         const tableRow = document.createElement("tr");
         thead.appendChild(tableRow);
         const tableHeader1 = document.createElement("th");
@@ -32,7 +31,15 @@ export class HolidaysTable {
         tableHeader2.textContent = "Holiday name";
         const buttonSort = document.createElement("button");
         buttonSort.innerHTML = "sort";
+        buttonSort.classList.add("btn");
+        buttonSort.classList.add("btn-outline-primary");
         tableHeader1.appendChild(buttonSort);
+        buttonSort.addEventListener("click", this.#sortTable);
+        return thead;
+    };
+
+    #generateTableBody = (holidays) => {
+        const tbody = document.createElement("tbody");
 
         holidays.forEach((holiday) => {
             const tableRow = document.createElement("tr");
@@ -46,13 +53,11 @@ export class HolidaysTable {
             );
             tableData2.textContent = holiday.name;
         });
-        this.#holidaysArray = holidays;
-        buttonSort.addEventListener("click", this.#sortTable)
-
+        return tbody;
     };
     #sortTable = () => {
         let sortUp = this.#sortUp;
-        this.#holidaysArray.sort(function(a, b) {
+        this.#holidaysArray.sort(function (a, b) {
             let dateA = new Date(a.date.iso);
             let dateB = new Date(b.date.iso);
             if (sortUp) {
@@ -60,12 +65,12 @@ export class HolidaysTable {
             } else {
                 return dateB < dateA ? 1 : -1;
             }
-        })
+        });
         this.#createTable(this.#holidaysArray);
         this.#sortUp = !sortUp;
-    }
+    };
     addNewTable = (holidays) => {
         this.#createTable(holidays);
         this.#sortUp = true;
-    }
+    };
 }
